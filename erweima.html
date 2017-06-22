@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<script src="js/mui.min.js"></script>
+<link href="css/mui.min.css" rel="stylesheet"/>
+<style type="text/css">
+	#out{width:90vw;height:70vh;border:1px solid #000;margin:10px auto;}
+</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title">二维码</h1>
+	</header>
+	<div class="mui-content">
+		<div id="out"></div>
+	    <button type="button" class="mui-btn mui-btn-blue" id="btn">开始</button>
+	    <button type="button" class="mui-btn mui-btn-blue" id="btn1">结束</button>
+	</div>	
+</body>
+<script type="text/javascript" charset="utf-8">
+var out=document.getElementById('out')
+var btn=document.getElementById('btn')
+var btn1=document.getElementById('btn1')
+var watchId,r,scan;
+document.addEventListener('plusready', function(){
+	btn.addEventListener('tap',function(){
+		//创建扫描对象
+		scan = new plus.barcode.Barcode('out');
+		scan.onmarked = onmarked; 
+		//开始扫描
+		scan.start();
+		
+	},false)	
+	
+	btn1.addEventListener('tap',function(){
+		//关闭扫描控件
+		scan.close()
+	},false)
+		
+},false);
+//扫描成功的回调
+function onmarked( type, result ) {
+	switch(type){
+		case plus.barcode.QR:
+		text = 'QR: ';
+		break;
+		case plus.barcode.EAN13:
+		text = 'EAN13: ';
+		break;
+		case plus.barcode.EAN8:
+		text = 'EAN8: ';
+		break;
+	}
+	scan.close()
+	out.innerHTML='扫描类型：'+type+'结果是：'+result;
+}
+
+
+function successCB(a){
+
+}
+
+
+function errorCB(){
+	alert('失败')
+}
+
+
+</script>
+</html>

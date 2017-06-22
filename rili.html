@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<script src="js/mui.min.js"></script>
+<link href="css/mui.min.css" rel="stylesheet"/>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=NtzDQh7cbSXrTtZideGgCQb4"></script>
+<style type="text/css">
+	#out{width:90vw;height:70vh;border:1px solid #000;margin:10px auto;}
+</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title">定位</h1>
+	</header>
+	<div class="mui-content">
+		<div id="out"></div>
+		<p id="con"></p>
+	    <button type="button" class="mui-btn mui-btn-blue" id="btn">开始</button>
+	    <button type="button" class="mui-btn mui-btn-blue" id="btn1">结束</button>
+	</div>	
+</body>
+<script type="text/javascript" charset="utf-8">
+var out=document.getElementById('out')
+var btn=document.getElementById('btn')
+var btn1=document.getElementById('btn1')
+var con=document.getElementById('con')
+var watchId,r,scan;
+document.addEventListener('plusready', function(){
+	btn.addEventListener('tap',function(){
+//		plus.geolocation.getCurrentPosition(successCB, errorCB);
+		//系统提示框
+//		plus.nativeUI.toast( "今天天气不错");
+
+//		系统日历
+		plus.nativeUI.pickDate( function(e){	
+			var d=e.date;
+			alert( "选择的日期："+d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate() );
+		},function(e){
+			alert( "未选择日期："+e.message );
+		});
+		
+	},false)	
+	
+	btn1.addEventListener('tap',function(){
+		
+	},false)
+		
+},false);
+//扫描成功的回调
+
+function successCB(a){
+	
+	// 百度地图API功能
+//	var map = new BMap.Map("out");    // 创建Map实例
+//	map.centerAndZoom(new BMap.Point(a.coords.longitude, a.coords.latitude), 11);  // 初始化地图,设置中心点坐标和地图级别
+//	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+//	map.setCurrentCity("郑州");          // 设置地图显示的城市 此项是必须设置的
+//	
+//	
+//	con.innerHTML=a.addresses;
+}
+
+
+function errorCB(){
+	alert('失败')
+}
+
+
+</script>
+</html>

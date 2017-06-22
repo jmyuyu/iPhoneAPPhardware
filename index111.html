@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    	#tex{width: 70vw;height: 70vh;border:1px solid darkgoldenrod ;}
+    </style>
+    <title></title>
+    <script type="text/javascript">
+    	var tex=document.getElementById('tex');
+    	var btn1=document.getElementById('btn1')
+    	var btn=document.getElementById('btn')
+   		document.addEventListener('plusready', function(){
+   			btn.addEventListener("tap",function(){
+   				plus.accelerometer.getCurrentAcceleration( successCB, errorCB );
+   			})
+   			
+   		});
+   		successCB=function(a){
+   			tex.innerHTML=( "Acceleration\nx:" + a.xAxis + "\ny:" + a.yAxis + "\nz:" + a.zAxis )
+   		};
+   		errorCB=function(){
+   			
+   		}
+    </script>
+</head>
+<body>
+	<div id="tex">	
+	</div>
+	<input type="button" name="" id="btn" value="开始" />
+	<input type="button" name="" id="btn1" value="停止" />
+</body>
+</html>
